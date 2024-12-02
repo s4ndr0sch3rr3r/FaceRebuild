@@ -1,0 +1,8 @@
+C:/GitRepo/FaceRebuild/build/Desktop_Qt_6_7_3_MSVC2022_64bit-Debug/CMakeFiles/FaceRebuild.dir
+C:/GitRepo/FaceRebuild/build/Desktop_Qt_6_7_3_MSVC2022_64bit-Debug/CMakeFiles/edit_cache.dir
+C:/GitRepo/FaceRebuild/build/Desktop_Qt_6_7_3_MSVC2022_64bit-Debug/CMakeFiles/rebuild_cache.dir
+C:/GitRepo/FaceRebuild/build/Desktop_Qt_6_7_3_MSVC2022_64bit-Debug/CMakeFiles/list_install_components.dir
+C:/GitRepo/FaceRebuild/build/Desktop_Qt_6_7_3_MSVC2022_64bit-Debug/CMakeFiles/install.dir
+C:/GitRepo/FaceRebuild/build/Desktop_Qt_6_7_3_MSVC2022_64bit-Debug/CMakeFiles/install/local.dir
+C:/GitRepo/FaceRebuild/build/Desktop_Qt_6_7_3_MSVC2022_64bit-Debug/CMakeFiles/FaceRebuild_autogen_timestamp_deps.dir
+C:/GitRepo/FaceRebuild/build/Desktop_Qt_6_7_3_MSVC2022_64bit-Debug/CMakeFiles/FaceRebuild_autogen.dir
