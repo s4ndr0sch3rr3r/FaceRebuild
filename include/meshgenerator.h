@@ -10,13 +10,18 @@
 #include <vtkImageData.h>
 #include <vtkPolyData.h>
 
+// Standard libraries
 #include <memory>
 #include <QDebug>
 
+// Class for generating and smoothing meshes
 class MeshGenerator {
 public:
-    vtkSmartPointer<vtkPolyData> performMeshGeneration(vtkSmartPointer<vtkImageData> vtkImage, double isoValue, bool debugMode);
-    vtkSmartPointer<vtkPolyData> smoothMesh(vtkSmartPointer<vtkPolyData> inputMesh, int iterations = 30, double relaxationFactor = 0.1);
+    // Perform mesh generation using either serial or parallel methods
+    vtkSmartPointer<vtkPolyData> performMeshGeneration(const vtkSmartPointer<vtkImageData> &vtkImage, double isoValue, bool debugMode);
+
+    // Smooth the generated mesh using VTK's smoothing filter
+    vtkSmartPointer<vtkPolyData> smoothMesh(const vtkSmartPointer<vtkPolyData> &inputMesh, int iterations = 30, double relaxationFactor = 0.1);
 };
 
 #endif // MESHGENERATOR_H

@@ -46,10 +46,10 @@ set(PROJECT_SOURCES
     src/imageprocessor.cpp
     src/itktovtkconverter.cpp
     src/renderermanager.cpp
-    src/scrollinteractorstyle.cpp
     src/meshgenerator.cpp
     src/serialmeshgenerator.cpp
     src/parallelmeshgenerator.cpp
+    src/scrollinteractorstyle.cpp
 )
 
 set(PROJECT_HEADERS
@@ -58,11 +58,11 @@ set(PROJECT_HEADERS
     include/imageprocessor.h
     include/itktovtkconverter.h
     include/renderermanager.h
-    include/scrollinteractorstyle.h
     include/meshgenerator.h
     include/IMeshGenerator.h
     include/serialmeshgenerator.h
     include/parallelmeshgenerator.h
+    include/scrollinteractorstyle.h
 )
 
 set(PROJECT_UIS

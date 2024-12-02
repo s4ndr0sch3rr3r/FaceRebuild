@@ -53,16 +53,16 @@ void MainWindow::addControls() {
     layout->addWidget(lowLabel);
 
     m_lowSpinBox = new QSpinBox(thresholdControlWidget);
-    m_lowSpinBox->setRange(0, 3190);
+    m_lowSpinBox->setRange(1, 254);
     m_lowSpinBox->setSingleStep(5);
-    m_lowSpinBox->setValue(10);
+    m_lowSpinBox->setValue(40);
     layout->addWidget(m_lowSpinBox);
 
     QLabel *highLabel = new QLabel("High threshold-value", thresholdControlWidget);
     layout->addWidget(highLabel);
 
     m_highSpinBox = new QSpinBox(thresholdControlWidget);
-    m_highSpinBox->setRange(10, 3200);
+    m_highSpinBox->setRange(2, 255);
     m_highSpinBox->setSingleStep(5);
     m_highSpinBox->setValue(100);
     layout->addWidget(m_highSpinBox);

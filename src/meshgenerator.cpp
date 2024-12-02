@@ -6,7 +6,8 @@
 // Qt libraries
 #include <QDebug>
 
-vtkSmartPointer<vtkPolyData> MeshGenerator::performMeshGeneration(vtkSmartPointer<vtkImageData> vtkImage, double isoValue, bool debugMode) {
+// Perform mesh generation
+vtkSmartPointer<vtkPolyData> MeshGenerator::performMeshGeneration(const vtkSmartPointer<vtkImageData> &vtkImage, double isoValue, bool debugMode) {
     std::unique_ptr<IMeshGenerator> meshGenerator;
 
     // Select the appropriate mesh generator based on the debug mode
@@ -21,7 +22,7 @@ vtkSmartPointer<vtkPolyData> MeshGenerator::performMeshGeneration(vtkSmartPointe
     // Generate the mesh using the selected generator
     vtkSmartPointer<vtkPolyData> mesh = meshGenerator->generateMesh(vtkImage, isoValue);
 
-    // Handle the generated mesh as needed (e.g., display or save)
+    // Log the status of the mesh generation
     if (mesh) {
         qDebug() << "Mesh generation completed successfully.";
     } else {
@@ -31,7 +32,13 @@ vtkSmartPointer<vtkPolyData> MeshGenerator::performMeshGeneration(vtkSmartPointe
     return mesh;
 }
 
-vtkSmartPointer<vtkPolyData> MeshGenerator::smoothMesh(vtkSmartPointer<vtkPolyData> inputMesh, int iterations, double relaxationFactor) {
+// Smooth the input mesh
+vtkSmartPointer<vtkPolyData> MeshGenerator::smoothMesh(const vtkSmartPointer<vtkPolyData> &inputMesh, int iterations, double relaxationFactor) {
+    if (!inputMesh) {
+        qDebug() << "Invalid input mesh. Cannot perform smoothing.";
+        return nullptr;
+    }
+
     // Create the smoothing filter
     vtkSmartPointer<vtkSmoothPolyDataFilter> smoother = vtkSmartPointer<vtkSmoothPolyDataFilter>::New();
     smoother->SetInputData(inputMesh);
@@ -39,7 +46,13 @@ vtkSmartPointer<vtkPolyData> MeshGenerator::smoothMesh(vtkSmartPointer<vtkPolyDa
     smoother->SetRelaxationFactor(relaxationFactor);  // Relaxation factor controls smoothing strength
     smoother->FeatureEdgeSmoothingOff();  // Optional: turn on if you want edge smoothing
     smoother->BoundarySmoothingOn();      // Optional: turn off if you don't want boundary smoothing
-    smoother->Update();
+
+    try {
+        smoother->Update();
+    } catch (const std::exception &e) {
+        qDebug() << "Error during smoothing:" << e.what();
+        return nullptr;
+    }
 
     // Return the smoothed mesh
     return smoother->GetOutput();
