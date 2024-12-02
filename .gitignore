@@ -1,32 +1,85 @@
-# Prerequisites
-*.d
+# Build directories
+build/
+_build*/
+cmake-build-*/
 
-# Compiled Object files
-*.slo
-*.lo
-*.o
+# Qt-specific
+*.pro.user
+*.qmake.stash
+*.qmlc
+*.jsc
+*.moc
 *.obj
+*.o
+*.lo
+*.la
+Makefile
+qrc_*.cpp
 
-# Precompiled Headers
-*.gch
-*.pch
+# ITK and VTK-specific generated files
+*.vtk
+*.vtp
+*.vti
+*.vtu
+*.stl
+*.mhd
+*.raw
+*.mha
+*.hdr
 
-# Compiled Dynamic libraries
+# Temporary files
+*.tmp
+*.temp
+*.log
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# Binary files
+*.exe
+*.dll
 *.so
 *.dylib
-*.dll
-
-# Fortran module files
-*.mod
-*.smod
-
-# Compiled Static libraries
-*.lai
-*.la
+*.out
 *.a
 *.lib
 
-# Executables
-*.exe
-*.out
-*.app
+# IDE/Editor-specific files
+.vscode/
+.idea/
+*.iml
+*.swp
+*~ 
+
+# CMake files
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+CTestTestfile.cmake
+Makefile
+
+# Coverage and debugging
+*.gcda
+*.gcno
+*.gcov
+*.pdb
+
+# Generated documentation
+doc/
+docs/
+DoxygenOutput/
+*.html
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# Package managers
+*.pyc
+*.pyo
+__pycache__/
+*.egg-info/
+node_modules/
+dist/
