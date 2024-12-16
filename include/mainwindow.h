@@ -6,6 +6,7 @@
 #include <QPushButton>
 #include <QTimer>
 #include <QSpinBox>
+#include <QCheckBox>
 
 // VTK libraries
 #include <vtkSmartPointer.h>
@@ -43,12 +44,13 @@ private:
     QTimer m_renderTimer;
     QSpinBox *m_lowSpinBox;
     QSpinBox *m_highSpinBox;
+    QCheckBox *m_normalizeCheckBox;
 
     int m_currentSlice;
     int m_maxSlices;
     bool m_needRender;
 
-    bool m_debugOn = true;
+    bool m_debugOn = false;
 
     itk::SmartPointer<itk::Image<unsigned short, 3>> m_itkImage;
 };

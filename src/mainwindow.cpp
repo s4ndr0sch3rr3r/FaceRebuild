@@ -67,6 +67,10 @@ void MainWindow::addControls() {
     m_highSpinBox->setValue(100);
     layout->addWidget(m_highSpinBox);
 
+    // Add normalization checkbox and store in member variable
+    m_normalizeCheckBox = new QCheckBox("Enable Normalization", thresholdControlWidget);
+    layout->addWidget(m_normalizeCheckBox);
+
     thresholdControlWidget->setLayout(layout);
     statusBar()->addPermanentWidget(thresholdControlWidget);
 }
@@ -105,7 +109,7 @@ void MainWindow::generate() {
     if (!vtkImage) return;
 
     MeshGenerator meshGen;
-    auto mesh = meshGen.performMeshGeneration(vtkImage, 0.5, false);
+    auto mesh = meshGen.performMeshGeneration(vtkImage, 0.5, m_debugOn);
     if (mesh) displayMesh(meshGen.smoothMesh(mesh));
 }
 
@@ -122,7 +126,13 @@ void MainWindow::displayNiftiImage(const QString &filename) {
 
     ImageProcessor processor;
     m_itkImage = processor.filter(m_itkImage);
-    m_itkImage = processor.normalize(m_itkImage);
+    // Check the state of the normalization checkbox
+    if (m_normalizeCheckBox && m_normalizeCheckBox->isChecked()) {
+        m_itkImage = processor.normalize(m_itkImage);
+        qDebug() << "Normalization applied.";
+    } else {
+        qDebug() << "Normalization skipped.";
+    }
     m_itkImage = processor.resample(m_itkImage);
 
     auto vtkImage = ITKtoVTKConverter::Convert<unsigned short, 3>(m_itkImage);

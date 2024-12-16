@@ -6,6 +6,8 @@
 // Qt libraries
 #include <QDebug>
 
+#include <chrono>
+
 // Perform mesh generation
 vtkSmartPointer<vtkPolyData> MeshGenerator::performMeshGeneration(const vtkSmartPointer<vtkImageData> &vtkImage, double isoValue, bool debugMode) {
     std::unique_ptr<IMeshGenerator> meshGenerator;
@@ -20,7 +22,19 @@ vtkSmartPointer<vtkPolyData> MeshGenerator::performMeshGeneration(const vtkSmart
     }
 
     // Generate the mesh using the selected generator
+
+    // Start timing
+    auto start = std::chrono::high_resolution_clock::now();
+
+    // Call the generateMesh function
     vtkSmartPointer<vtkPolyData> mesh = meshGenerator->generateMesh(vtkImage, isoValue);
+
+    // End timing
+    auto end = std::chrono::high_resolution_clock::now();
+    std::chrono::duration<double> elapsed = end - start;
+
+    // Output the time taken
+    std::cout << "Mesh generation took: " << elapsed.count() << " seconds." << std::endl;
 
     // Log the status of the mesh generation
     if (mesh) {
